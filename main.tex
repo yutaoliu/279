@@ -162,6 +162,36 @@ The first step in the mission study would be to simulate the trajectory of Terra
     \label{figure:traj}
 \end{figure}
 
+\section{Linear Relative Motion}
+\section{perturbed J2 relative orbit motion in close near-circular  orbits  using  analytic  solutions  and  numerical  integration}
+\section{Control Law Requirements}
+What are the significant operational modes of your formation?  Some examples may include safe-keeping mode, scientific observation mode, and rendezvous/docking mode,though the needs of your mission may vary.  Be sure to define at least 2-3 modes.
+
+How are these modes defined?  Think about the absolute and relative motions of your spacecraft.  You might use sets of absolute or relative orbit elements to characterize each mode, for example.
+
+When  operating  within  these  modes  (i.e.   formation  keeping),  what  sorts  of  control requirements may your formation be subjected to?  You should consider parameterslike allowable separations, necessary precision of knowledge and actuation, limitations on burns, etc.
+
+When switching between modes (i.e.  reconfiguration), what kinds of control requirements are present?  Some examples include time to reconfigure or any safety concerns.
+
+\section{Control Law Implementation}
+
+\section{Navigation System Design}
+What  relative  state  representation  will  you  estimate  with  your  filter?   Examples  we have seen in class include the Cartesian relative state, orbit element differences, and quasi-nonsingular relative orbit elements.
+
+What dynamics model will you use to perform the EKF state prediction?  Will you per-form the prediction with a closed-form linear/nonlinear propagator or with a numerical integration scheme?
+
+What is the associated linearized dynamics model you will use to perform the EKF covariance update?  Provide the state transition matrixΦand control input matrixB.
+
+What sensors are available on-board your spacecraft, and what kinds of measurements do they provide (e.g.  GNSS, radio frequency, optical, etc.)?•What is the nonlinear model which relates the state to the sensor measurements?
+
+What is the associated sensitivity matrix H which you will use to perform the EKF update step?
+
+\section{Navigation System Implementation}
+Generate ground truth signals using a clearly-described formation propagator.•Consider two types of measurements:1.  Corrupt  the  ground  truth  state  of  interest  with  some  Gaussian  noise  and  feedthis to the EKF (i.e.yt=Ixt+vt, wherevtis zero-mean white noise).  Use thissimplified set of measurements to validate your filter’s base performance.2.  Generate representative measurements according to your mission’s sensors usingthe nonlinear measurement model from Part 1.In  both  of  the  above  cases,  be  sure  to  use  apply  reasonable  levels  of  noise  for  yourmeasurements based on the accuracy of your sensors.Note that you can generate noise as a zero-mean Gaussian random vector with prese-lected standard deviation in MATLAB assqrtm(sigma)*randn(n, 1), wheresigmais a covariance matrix, andnis your desired vector size.•Set an initial estimate and covariance,x0andP0.  The estimate should be close to,but not exactly equal to the true initial state.  The covariance can be set to a diagonalmatrix, with elements equal to the variance of your state parameters.•Define the process and measurement noise covariances,QandR, which represent theuncertainty in the dynamics and measurement models, respectively.  You may wish todefineQsimilar toP0, but much smaller.  MeanwhileRmay be a diagonal matriceswith elements equal to the variance of each measurement.•Combine all of the previous parameters and mechanize your extended Kalman filter.Recall the steps involved in a single iteration of the EKF:1.  Predict the evolution of the state and covariance with your dynamics model andstate transition matrix.2.  Generate a pre-fit residual by comparing the expected measurement against thetrue measurement.3.  Update the prediction with the EKF measurement update step.4.  Generate  a  post-fit  residual  by  comparing  the  updated  expected  measurementagainst the true measurement.•Illustrate the performance of the filter by plotting the following parameters: true, mea-sured, and estimated states, estimation error (difference between true and estimatedstates), standard deviation of the estimate, and pre-fit and post-fit residuals.
+
+\section{Filter Integration}
+Select at least one control law you wish to analyze from Problem Set 6.(b)  Alter the control law state input by corrupting the ground truth with some represen-tative noise.  The bias and covariance of this noise should match the expected behaviorof your estimator, similar to the process you used to generate your first set of measure-ments in Problem Set 7, Problem 2.  How does your controller perform?  What are themain differences compared to the original implementation?(c)  Now use the extended Kalman filter from Problem Set 7 to feed the control law itsstate input.  You should send the ground truth through your true sensor model, thenfeed this to the filter before passing the estimated state to the controller.  Note thatyou must now account for the introduction of control inputs in the prediction step ofyour EKF. How does the controller perform?For both of the simulations in parts (b) and (c), you should provide comprehensive perfor-mance metrics.  These include parameters like the time to convergence (i.e.  when the errorfalls below a certain threshold), control tracking error/navigation error and their statisticsat  steady  state,  comparison  of  pre-  and  post-fit  residuals,  control  input  history,  ∆Vcon-sumption, etc.  Be sure to discuss how performance compares with your expectations.
+
 
 
 % \input{notes}
