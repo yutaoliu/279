@@ -1,0 +1,46 @@
+% \documentclass[11pt,letterpaper]{article}
+
+% % Use the custom AA279D template style
+% \usepackage{AA279D_template}
+% \usepackage{hyperref, gensymb, amsmath}
+% \begin{document}
+
+$$^\mathbb{I}{\delta\mathbf{v}_L} = ^\mathbb{I}{\mathbf{R}}^\mathcal{L}$$
+orbit design usually done in mean space $\langle\cdot\rangle$
+
+osculating oe as a transformation from mean
+$\textbf{\oe}(\langle\textbf{\oe}\rangle)$
+
+use Newton-Raphson to compute $\langle\Delta\textbf{\oe}\rangle$ iterative update until error condition
+
+$$\ddot{\mathbf{\rho}} = 
+\mathbf{f}
+(\mathbf{\rho}, \dot{\mathbf{\rho}}, \mathbf{r}_0, \dot{\mathbf{r}}_0, \mathbf{\theta}_0, \dot{\mathbf{\theta}}_0,)
+$$
+when $e_0=0$ this becomes $\ddot{\mathbf{\rho}} = 
+\mathbf{g}(\mathbf{\rho}, \dot{\mathbf{\rho}}, \mathbf{\theta}_0,)$
+
+when will the deputy appear stationary to the chief?
+
+\[
+	\begin{cases}
+    	(x+a_0)^2 + y^2 = a_0^2\\z=0
+    \end{cases}
+\]
+
+when $\rho/r_0 <<1$ the HOTs drop out to yield a set of linear ODEs
+\[
+	\begin{cases}
+    \begin{aligned}
+    	&\ddot{x}-2n_0\dot{y} &-3n^3x &=0\\
+        &\ddot{y}+2n_0\dot{x} &       &=0\\
+        &\ddot{z}&+n_0^2z             &=0
+    \end{aligned}
+    \end{cases}
+\]
+
+can you replace mean motion of chief with deputy? no longer second order
+
+FF in LEO of small separations can be designed with HCW equations
+
+% \end{document}
